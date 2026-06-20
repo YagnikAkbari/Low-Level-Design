@@ -1,6 +1,7 @@
 package com.ride_wise;
 
 import com.ride_wise.entity.Driver;
+import com.ride_wise.entity.Rider;
 import com.ride_wise.enums.VehicleType;
 import com.ride_wise.exception.DuplicateAadharNumberFoundException;
 import com.ride_wise.exception.DuplicateVehicleNumberFoundException;
@@ -48,9 +49,34 @@ public class App {
       }
     }
 
+    Rider[] demoRiders = new Rider[] {
+        new Rider(0, "", "Koramangala"),
+        new Rider(0, "Anita Rao", "Indiranagar"),
+        new Rider(0, null, "Whitefield"),
+        new Rider(0, "Karthik Menon", "")
+    };
+
+    for (Rider rider : demoRiders) {
+      try {
+        Rider savedRider = riderService.registerRider(rider);
+        System.out.println("Registered rider: " + savedRider);
+      } catch (InvalidInputException ex) {
+        if (ex.getErrors().isPresent()) {
+          System.out.println("Failed to register rider(Validation errors): " + ex.getErrors().get());
+        } else {
+          System.out.println("Failed to register rider(Invalid input): " + ex.getMessage());
+        }
+      }
+    }
+
     System.out.println("All drivers after this operation:");
     for (Driver driver : driverService.getAllDrivers()) {
       System.out.println(driver);
+    }
+
+    System.out.println("All riders after this operation:");
+    for (Rider rider : riderService.getAllRiders()) {
+      System.out.println(rider);
     }
   }
 

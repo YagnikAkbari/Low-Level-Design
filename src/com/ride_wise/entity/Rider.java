@@ -34,4 +34,13 @@ public class Rider {
   public void setLocation(String location) {
     this.location = location;
   }
+
+  @Override
+  public String toString() {
+    return "Rider{"
+        + "id=" + id
+        + ", name='" + name + '\''
+        + ", location='" + location + '\''
+        + '}';
+  }
 }
