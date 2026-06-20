@@ -30,4 +30,23 @@ public class DriverService {
   public List<Driver> getAllDrivers() {
     return driverRepository.findAll();
   }
+
+  public List<Driver> getAvailableDrivers() {
+    return driverRepository.findAllAvailable();
+  }
+
+  public Optional<Driver> getDriverById(long driverId) {
+    return driverRepository.findById(driverId);
+  }
+
+  public Driver updateAvailability(long driverId, boolean available)
+      throws InvalidInputException {
+    Optional<Driver> driverOptional = driverRepository.findById(driverId);
+    if (driverOptional.isEmpty()) {
+      throw new InvalidInputException("Driver not found for id: " + driverId);
+    }
+    Driver driver = driverOptional.get();
+    driver.setAvailable(available);
+    return driver;
+  }
 }

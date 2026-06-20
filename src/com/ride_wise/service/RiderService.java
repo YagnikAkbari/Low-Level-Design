@@ -27,4 +27,8 @@ public class RiderService {
   public List<Rider> getAllRiders() {
     return riderRepository.findAll();
   }
+
+  public Optional<Rider> getRiderById(long riderId) {
+    return riderRepository.findById(riderId);
+  }
 }

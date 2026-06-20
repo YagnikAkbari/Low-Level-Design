@@ -40,4 +40,14 @@ public class DriverRepository {
     return driversMap.values().stream().collect(Collectors.toList());
   }
 
+  public Optional<Driver> findById(long driverId) {
+    return Optional.ofNullable(driversMap.get(driverId));
+  }
+
+  public List<Driver> findAllAvailable() {
+    return driversMap.values().stream()
+        .filter(Driver::isAvailable)
+        .collect(Collectors.toList());
+  }
+
 }

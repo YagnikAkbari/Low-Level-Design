@@ -56,4 +56,15 @@ public class Ride {
   public void setRideStatus(RideStatus rideStatus) {
     this.rideStatus = rideStatus;
   }
+
+  @Override
+  public String toString() {
+    return "Ride{"
+        + "id=" + id
+        + ", driver=" + driver
+        + ", rider=" + rider
+        + ", distance=" + distance
+        + ", rideStatus=" + rideStatus
+        + '}';
+  }
 }

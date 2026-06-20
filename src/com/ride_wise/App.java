@@ -1,6 +1,7 @@
 package com.ride_wise;
 
 import com.ride_wise.entity.Driver;
+import com.ride_wise.entity.Ride;
 import com.ride_wise.entity.Rider;
 import com.ride_wise.enums.VehicleType;
 import com.ride_wise.exception.DuplicateAadharNumberFoundException;
@@ -21,7 +22,7 @@ public class App {
     RiderRepository riderRepository = new RiderRepository();
     RiderService riderService = new RiderService(riderRepository);
     RideRepository rideRepository = new RideRepository();
-    RideService rideService = new RideService(rideRepository);
+    RideService rideService = new RideService(rideRepository, driverRepository);
 
     Driver[] demoDrivers = new Driver[] {
         new Driver(0, "", -29, "DL-12345-0001", "AADHAR-1001", "KA-01-HH-1234",
@@ -69,14 +70,31 @@ public class App {
       }
     }
 
-    System.out.println("All drivers after this operation:");
-    for (Driver driver : driverService.getAllDrivers()) {
+    System.out.println("Available drivers:");
+    for (Driver driver : driverService.getAvailableDrivers()) {
       System.out.println(driver);
     }
 
-    System.out.println("All riders after this operation:");
+    System.out.println("All riders:");
     for (Rider rider : riderService.getAllRiders()) {
       System.out.println(rider);
+    }
+
+    try {
+      Rider rider = riderService.getRiderById(1L).orElse(null);
+      if (rider != null) {
+        System.out.println("Requesting ride for rider: " + rider.getName());
+        Ride ride = rideService.requestRide(rider, 8.5);
+        System.out.println("Ride created: " + ride);
+        System.out.println("Ride receipt: " + rideService.completeRide(ride.getId()));
+      }
+    } catch (InvalidInputException ex) {
+      System.out.println("Ride operation failed: " + ex.getMessage());
+    }
+
+    System.out.println("All rides:");
+    for (Ride ride : rideService.getAllRides()) {
+      System.out.println(ride);
     }
   }
 

@@ -3,6 +3,7 @@ package com.ride_wise.repository;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.ride_wise.entity.Rider;
@@ -20,5 +21,9 @@ public class RiderRepository {
 
   public List<Rider> findAll() {
     return ridersMap.values().stream().collect(Collectors.toList());
+  }
+
+  public Optional<Rider> findById(long riderId) {
+    return Optional.ofNullable(ridersMap.get(riderId));
   }
 }
