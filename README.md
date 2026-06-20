@@ -30,3 +30,4 @@ Pass the application name to the script to launch one module directly.
 - `library_management`
 - `learntrack`
 - `food_delivery`
+- `ride_wise`

@@ -21,9 +21,12 @@ public class Main {
       case "food_delivery":
         com.food_delivery.App.run();
         break;
+      case "ride_wise":
+        com.ride_wise.App.run();
+        break;
       default:
         System.out.println("Unknown problem: " + args[0]);
-        System.out.println("Available problems: result_management");
+        System.out.println("Available problems: result_management, library_management, learntrack, ride_wise");
     }
   }
 }
