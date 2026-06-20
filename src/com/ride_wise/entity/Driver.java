@@ -96,4 +96,19 @@ public class Driver {
   public void setVehicleType(VehicleType vehicleType) {
     this.vehicleType = vehicleType;
   }
+
+  @Override
+  public String toString() {
+    return "Driver{"
+        + "id=" + id
+        + ", name='" + name + '\''
+        + ", age=" + age
+        + ", dlNumber='" + dlNumber + '\''
+        + ", aadharNumber='" + aadharNumber + '\''
+        + ", vehicleNumber='" + vehicleNumber + '\''
+        + ", currentLocation='" + currentLocation + '\''
+        + ", available=" + available
+        + ", vehicleType=" + vehicleType
+        + '}';
+  }
 }
