@@ -23,8 +23,8 @@ public class App {
     RideService rideService = new RideService(rideRepository);
 
     Driver[] demoDrivers = new Driver[] {
-        new Driver(0, "", 29, "DL-12345-0001", "AADHAR-1001", "KA-01-HH-1234",
-            "MG Road", true, VehicleType.CAR),
+        new Driver(0, "", -29, "DL-12345-0001", "AADHAR-1001", "KA-01-HH-1234",
+            null, true, null),
         new Driver(0, "Neha Verma", 34, "DL-12345-0002", "AADHAR-1002", "KA-01-HH-2234",
             "Indiranagar", true, VehicleType.AUTO),
         new Driver(0, null, 31, "DL-12345-0003", "AADHAR-1001", "KA-01-HH-3234",
@@ -40,9 +40,6 @@ public class App {
       } catch (DuplicateAadharNumberFoundException | DuplicateVehicleNumberFoundException ex) {
         System.out.println("Failed to register driver '" + driver.getName() + "': " + ex.getMessage());
       } catch (InvalidInputException ex) {
-        // System.out.println("Failed to register driver " + ex.getErrors()
-        // .map(Object::toString)
-        // .orElse(ex.getMessage()));
         if (ex.getErrors().isPresent()) {
           System.out.println("Failed to register driver(Validation errors): " + ex.getErrors().get());
         } else {
